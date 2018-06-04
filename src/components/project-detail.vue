@@ -25,13 +25,22 @@
                 <p class="project-info-about-text">{{proInfo.content}}</p>
             </div>
             <div class="project-info-group">
-                <div :class="{active:select1}" @click="tao">整套购买</div>
-                <div :class="{active:select2}" @click="groups">优惠组合</div>
-                <div :class="{active:select3}" @click="fen">单份权益</div>
+                <div :class="[select1===1? 'active':'']" @click="choose(1)">整套购买</div>
+                <div :class="[select1===2? 'active':'']" @click="choose(2)">优惠组合</div>
+                <div :class="[select1===3? 'active':'']" @click="choose(3)">单份权益</div>
             </div>
-            <hotel-list v-show="select1" :hotelList="taoList"></hotel-list>
-            <hotel-list v-show="select2" :hotelList="groupList"></hotel-list>
-            <hotel-list v-show="select3" :hotelList="fenList"></hotel-list>
+            <hotel-list v-show="select1===1" :hotelList="taoList"></hotel-list>
+            <hotel-list v-show="select1===2" :hotelList="groupList"></hotel-list>
+            <hotel-list v-show="select1===2" :hotelList="fenList"></hotel-list>
+
+            <!--<div class="project-info-group">-->
+                <!--<div :class="{active:select1}" @click="tao">整套购买</div>-->
+                <!--<div :class="{active:select2}" @click="groups">优惠组合</div>-->
+                <!--<div :class="{active:select3}" @click="fen">单份权益</div>-->
+            <!--</div>-->
+            <!--<hotel-list v-show="select1" :hotelList="taoList"></hotel-list>-->
+            <!--<hotel-list v-show="select2" :hotelList="groupList"></hotel-list>-->
+            <!--<hotel-list v-show="select3" :hotelList="fenList"></hotel-list>-->
         </div>
         <div class="project-bot">
             <div class="project-bot-left">
@@ -62,7 +71,8 @@
                 taoList:[],
                 groupList:[],
                 fenList:[],
-                select1:true,
+                select1:1,
+//                select1:true,
                 select2:false,
                 select3:false
             }
@@ -85,6 +95,9 @@
                         }
                     }
                 })
+            },
+            choose(type){
+                this.select1=type;
             },
             tao(){
                 this.select1=true;

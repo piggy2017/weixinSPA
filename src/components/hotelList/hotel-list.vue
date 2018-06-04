@@ -16,6 +16,14 @@
                 </div>
             </router-link>
         </div>
+        <!--<div>-->
+            <!--<ul>-->
+                <!--<li v-for="list in selectList">-->
+                    <!--<span>{{list.name}}</span>-->
+                    <!--<span>{{list.price}}</span>-->
+                <!--</li>-->
+            <!--</ul>-->
+        <!--</div>-->
     </div>
 </template>
 <script>
@@ -24,6 +32,7 @@
         props:['hotelList'],
         data(){
             return{
+
             }
         },
     }
