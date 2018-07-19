@@ -22,12 +22,12 @@
         name:'tab',
         methods:{
             init(){
-                let hasClass=this.$refs.link1.getAttribute("class")
+                let hasClass=this.$refs.link1.className
                 console.log(hasClass)
             }
         },
         created(){
-            //this.init()
+            //this.init();
         },
         computed:{
 

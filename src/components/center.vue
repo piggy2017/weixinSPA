@@ -15,16 +15,95 @@
             <div class="center-tab-item" :class="{itemActive:isActive}" @click="chooseTab">我的收藏</div>
             <div class="center-tab-item" :class="{itemActive:isActive2}" @click="chooseActivity">我的活动</div>
         </div>
+        <div class="swt-box">
+            <button class="my-btn" @click="alt">弹框</button>11
+        </div>
+        <div>
+            <router-link to="/upload">
+                formdata 上传图片预览
+            </router-link>
+        </div>
+        <div class="next-trick">
+            <div ref="msgDiv">{{msg}}</div>
+            <div>Message got outside $nextTick: {{msg1}}</div>
+            <div>Message got inside $nextTick: {{msg2}}</div>
+            <div>Message got outside $nextTick: {{msg3}}</div>
+            <button @click="changeMsg">
+                Change the Message
+            </button>
+        </div>
+        <div class="player">
+            <video-player  class="video-player vjs-custom-skin"
+                           ref="videoPlayer"
+                           :playsinline="true"
+                           :options="playerOptions"
+                           @play="onPlayerPlay($event)"
+                           @pause="onPlayerPause($event)"
+            >
+            </video-player>
+        </div>
+        <div class="my-vi" style="margin-top: 20px;margin-bottom: 60px;">
+            <video width="100%"  controls="controls">
+                <source src="http://7xkwa7.media1.z0.glb.clouddn.com/sample_video_L" type="video/ogg">
+                <source src="http://7xkwa7.media1.z0.glb.clouddn.com/sample_video_L" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+        </div>
+        <div style="margin-top: 1rem;margin-bottom: 3rem;">
+            <router-link to="/parent">to params test</router-link>
+        </div>
     </div>
 </template>
 <script>
+    import swal from 'sweetalert'
+    import { videoPlayer } from 'vue-video-player';
+
     export default {
+//        components: {
+//            videoPlayer
+//        },
         data(){
             return{
                 username:"爱看书爱跑步的阴暗少年",
                 myMoney:888888,
                 isActive:true,
-                isActive2:false
+                isActive2:false,
+                msg: 'Hello Vue.',
+                msg1: '',
+                msg2: '',
+                msg3: '',
+                playerOptions: {
+                    playbackRates: [0.7, 1.0, 1.5, 2.0], //播放速度
+                    autoplay: false, //如果true,浏览器准备好时开始回放。
+                    muted: false, // 默认情况下将会消除任何音频。
+                    loop: true, // 导致视频一结束就重新开始。
+                    preload: 'auto', // 建议浏览器在<video>加载元素后是否应该开始下载视频数据。auto浏览器选择最佳行为,立即开始加载视频（如果浏览器支持）
+                    language: 'zh-CN',
+                    aspectRatio: '16:9', // 将播放器置于流畅模式，并在计算播放器的动态大小时使用该值。值应该代表一个比例 - 用冒号分隔的两个数字（例如"16:9"或"4:3"）
+                    fluid: true, // 当true时，Video.js player将拥有流体大小。换句话说，它将按比例缩放以适应其容器。
+                    sources: [{
+                        type: "video/mp4",
+                        src: "http://7xkwa7.media1.z0.glb.clouddn.com/sample_video_L"//你的m3u8地址（必填）
+                        //src:"https://cdn.theguardian.tv/webM/2015/07/20/150716YesMen_synd_768k_vp8.webm"
+                    }],
+                    poster: "../assets/bg-img.jpg", //你的封面地址
+                    width: document.documentElement.clientWidth,
+                    notSupportedMessage: '此视频暂无法播放，请稍后再试', //允许覆盖Video.js无法播放媒体源时显示的默认信息。
+                    controlBar: {
+                      timeDivider: true,
+                      durationDisplay: true,
+                      remainingTimeDisplay: false,
+                      fullscreenToggle: true  //全屏按钮
+                    }
+                }
+            }
+        },
+        mounted() {
+            console.log('this is current player instance object', this.player)
+        },
+        computed: {
+            player() {
+                return this.$refs.videoPlayer.player
             }
         },
         methods:{
@@ -35,6 +114,42 @@
             chooseActivity(){
                 this.isActive=false;
                 this.isActive2=true;
+            },
+            onPlayerPlay(player) {
+                console.log("play")
+                console.log(player)
+
+            },
+            onPlayerPause(player){
+                console.log("pause")
+               console.log(player)
+            },
+            changeMsg(e) {
+                console.log(e);
+                this.msg = "Hello world."
+                this.msg1 = this.$refs.msgDiv.innerHTML;
+                this.$nextTick(() => {
+                    this.msg2 = this.$refs.msgDiv.innerHTML;
+                })
+                this.msg3 = this.$refs.msgDiv.innerHTML;
+            },
+            alt(){
+                swal({
+                    title: "Are you sure?",
+                    text: "Once deleted, you will not be able to recover this imaginary file!",
+                    icon: "warning",
+                    buttons: true,
+                    dangerMode: true,
+                })
+                    .then((willDelete) => {
+                        if (willDelete) {
+                            swal("Poof! Your imaginary file has been deleted!", {
+                                icon: "success",
+                            });
+                        } else {
+                            swal("Your imaginary file is safe!");
+                        }
+                    });
             }
         }
     }
@@ -107,5 +222,23 @@
                 left 30%
                 height 3px
                 background-color #105098
+
+    .swt-box
+        width 100%
+        height 2rem
+        border-top 1px solid #eee
+        .my-btn
+            width 2rem
+            height 30px
+            background-color aqua
+            border-radius 4px
+            color #fff
+            line-height 30px
+            text-align center
+            font-size 16px
+    .next-trick
+        width 100%
+        height 5rem
+        border 1px solid #eee
 
 </style>

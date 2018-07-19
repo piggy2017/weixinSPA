@@ -9,23 +9,60 @@ import earn from '@/components/earn/earn'
 import travel from '@/components/travel'
 import house from '@/components/viewHouse'
 import projectDetail from '@/components/project-detail'
+import upload from '@/components/formdata/upload'
+import parent from '@/components/params/parent'
 Vue.use(Router)
 export default new Router({
+  //mode: 'history',
   routes: [
-    {
+      {
       path: '/',
       name: 'home',
       component: home,
         children:[
-            {path:"/",redirect:"/firstPage"},
-            {path:"/firstPage",name:"firstPage",component:firstPage},
-            {path:"/dongTai",name:"dongTai",component:dongTai},
-            {path:"/center",name:"center",component:center}
+            {path:"/",redirect:"/firstPage",
+                meta: {
+                title: '首页'
+            }
+            },
+            {path:"/firstPage",name:"firstPage",component:firstPage,
+              meta:{
+                title: '首页'
+               }
+            },
+            {path:"/dongTai",name:"dongTai",component:dongTai,
+                meta:{
+                    title: '动态'
+                }
+            },
+            {path:"/center",name:"center",component:center,
+                meta:{
+                    title: '个人中心'
+                }
+            }
         ]
     },
-      {path:'/earn', name:'earn', component:earn},
-      {path:'/travel', name:'travel', component:travel},
+      {path:'/earn', name:'earn', component:earn,
+          meta:{
+              title: '来赚钱'
+          }
+      },
+      {path:'/travel', name:'travel', component:travel,
+          meta:{
+              title: '旅行'
+          }
+      },
       {path:'/house', name:'house', component:house},
-      {path:'/projectDetail/:id', name:'projectDetail', component:projectDetail}
+      {path:'/upload', name:'upload', component:upload},
+      {path:'/projectDetail/:id', name:'projectDetail', component:projectDetail,
+          meta:{
+              title: '项目详情'
+          }
+      },
+      {path:'/parent', name:'parent', component:parent,
+          meta:{
+              title: '父级元素'
+          }
+      }
   ]
 })

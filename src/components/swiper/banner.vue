@@ -29,8 +29,8 @@
                     onTouchEnd: function() {
                         swiper.startAutoplay()
                     }
+                },300)
                 });
-            },300)
         }
     }
 </script>

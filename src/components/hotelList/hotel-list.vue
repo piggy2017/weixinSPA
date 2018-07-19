@@ -18,9 +18,9 @@
         </div>
         <!--<div>-->
             <!--<ul>-->
-                <!--<li v-for="list in selectList">-->
-                    <!--<span>{{list.name}}</span>-->
-                    <!--<span>{{list.price}}</span>-->
+                <!--<li v-for="item in hotelItems">-->
+                    <!--<span>{{item.name}}</span>-->
+                    <!--<span>{{item.price}}</span>-->
                 <!--</li>-->
             <!--</ul>-->
         <!--</div>-->
@@ -32,7 +32,7 @@
         props:['hotelList'],
         data(){
             return{
-
+                hotelItems:this.hotelList // prop 作为初始值传入后，子组件想把它当作局部数据来用
             }
         },
     }

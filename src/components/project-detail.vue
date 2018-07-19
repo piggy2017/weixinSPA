@@ -32,24 +32,16 @@
             <hotel-list v-show="select1===1" :hotelList="taoList"></hotel-list>
             <hotel-list v-show="select1===2" :hotelList="groupList"></hotel-list>
             <hotel-list v-show="select1===2" :hotelList="fenList"></hotel-list>
-
-            <!--<div class="project-info-group">-->
-                <!--<div :class="{active:select1}" @click="tao">整套购买</div>-->
-                <!--<div :class="{active:select2}" @click="groups">优惠组合</div>-->
-                <!--<div :class="{active:select3}" @click="fen">单份权益</div>-->
-            <!--</div>-->
-            <!--<hotel-list v-show="select1" :hotelList="taoList"></hotel-list>-->
-            <!--<hotel-list v-show="select2" :hotelList="groupList"></hotel-list>-->
-            <!--<hotel-list v-show="select3" :hotelList="fenList"></hotel-list>-->
         </div>
         <div class="project-bot">
             <div class="project-bot-left">
                 <img src="https://tracenet.cn/wechat/images/hxxq/hxxq_07.png" alt="">
                 <p class="project-bot-left-text">转发</p>
             </div>
-            <div class="project-bot-right" @click="callPhone">
-                致电专属顾问
-            </div>
+            <!--<div class="project-bot-right" @click="callPhone">-->
+                <!--致电专属顾问-->
+            <!--</div>-->
+            <a class="project-bot-right" href="tel:18682721627">致电专属顾问</a>
         </div>
     </div>
 </template>
@@ -72,9 +64,6 @@
                 groupList:[],
                 fenList:[],
                 select1:1,
-//                select1:true,
-                select2:false,
-                select3:false
             }
         },
         methods:{
@@ -98,21 +87,6 @@
             },
             choose(type){
                 this.select1=type;
-            },
-            tao(){
-                this.select1=true;
-                this.select2=false;
-                this.select3=false;
-            },
-            groups(){
-                this.select1=false;
-                this.select2=true;
-                this.select3=false;
-            },
-            fen(){
-                this.select1=false;
-                this.select2=false;
-                this.select3=true;
             }
         },
         created:function(){
