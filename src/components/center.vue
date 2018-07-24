@@ -35,7 +35,7 @@
         <div class="player">
             <video-player  class="video-player vjs-custom-skin"
                            ref="videoPlayer"
-                           :playsinline="true"
+                           :playsinline="false"
                            :options="playerOptions"
                            @play="onPlayerPlay($event)"
                            @pause="onPlayerPause($event)"
@@ -48,6 +48,15 @@
                 <source src="http://7xkwa7.media1.z0.glb.clouddn.com/sample_video_L" type="video/mp4">
                 Your browser does not support the video tag.
             </video>
+        </div>
+        <div>
+            <router-link to="/pdf">pdf文件</router-link>
+        </div>
+        <div>
+            <router-link to="/cropper">cropper剪裁图片</router-link>
+        </div>
+        <div>
+            <a href="https://www.baidu.com/">to demo page</a>
         </div>
         <div style="margin-top: 1rem;margin-bottom: 3rem;">
             <router-link to="/parent">to params test</router-link>
@@ -73,7 +82,7 @@
                 msg2: '',
                 msg3: '',
                 playerOptions: {
-                    playbackRates: [0.7, 1.0, 1.5, 2.0], //播放速度
+                    playbackRates: [1.0], //播放速度
                     autoplay: false, //如果true,浏览器准备好时开始回放。
                     muted: false, // 默认情况下将会消除任何音频。
                     loop: true, // 导致视频一结束就重新开始。
@@ -90,9 +99,9 @@
                     width: document.documentElement.clientWidth,
                     notSupportedMessage: '此视频暂无法播放，请稍后再试', //允许覆盖Video.js无法播放媒体源时显示的默认信息。
                     controlBar: {
-                      timeDivider: true,
-                      durationDisplay: true,
-                      remainingTimeDisplay: false,
+                      timeDivider: false, // 是否显示剩余时间的分割线
+                      durationDisplay: true,  //是否显示总时间
+                      remainingTimeDisplay: false,  //是否显示剩余时间
                       fullscreenToggle: true  //全屏按钮
                     }
                 }
@@ -102,10 +111,12 @@
             console.log('this is current player instance object', this.player)
         },
         computed: {
-            player() {
+                player() {
                 return this.$refs.videoPlayer.player
             }
         },
+
+
         methods:{
             chooseTab(){
                 this.isActive=true;
@@ -240,5 +251,27 @@
         width 100%
         height 5rem
         border 1px solid #eee
+    .player .vjs-custom-skin > .video-js .vjs-control-bar .vjs-fullscreen-control{
+        /*margin-left: 0.6rem;*/
+    }
+    .video-js .vjs-progress-control{
+        display none
+    }
+    .vjs-volume-panel-horizontal{
+        /*margin-left 0.6rem !important*/
+    }
+    .video-js .vjs-current-time, .vjs-no-flex .vjs-current-time{
+        /*margin-left 0.6rem !important*/
+    }
+    .vjs-custom-skin > .video-js .vjs-control-bar .vjs-playback-rate{
+        /*margin-left 0.6rem*/
+    }
 
+
+
+    .vjs-has-started .vjs-control-bar{
+        display: flex;
+        flex-flow: row nowrap;
+        justify-content: space-between;
+    }
 </style>

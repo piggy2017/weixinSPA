@@ -43,9 +43,11 @@
                 console.log(e.target.files[0]);
                 this.file=e.target.files[0];
                 let imgUrl= window.URL.createObjectURL(e.target.files[0]);
+                console.log(imgUrl);
                 this.imgSrc=imgUrl;
             },
             uploadPic(){
+                console.log(this.file);
                 let imgData=new FormData();
                 imgData.append("img",this.file);
                 imgData.append("name","sunlin");

@@ -11,6 +11,9 @@ import house from '@/components/viewHouse'
 import projectDetail from '@/components/project-detail'
 import upload from '@/components/formdata/upload'
 import parent from '@/components/params/parent'
+import pdf from '@/components/pdf/pdf'
+import cropper from '@/components/cropper/cropper'
+import author from '@/components/author/author'
 Vue.use(Router)
 export default new Router({
   //mode: 'history',
@@ -62,6 +65,21 @@ export default new Router({
       {path:'/parent', name:'parent', component:parent,
           meta:{
               title: '父级元素'
+          }
+      },
+      {path:'/pdf', name:'pdf', component:pdf,
+          meta:{
+              title: 'pdf'
+          }
+      },
+      {path:'/cropper', name:'cropper', component:cropper,
+          meta:{
+              title: 'cropper'
+          }
+      },
+      {path:'/author', name:'author', component:author,
+          meta:{
+              title: '验证'
           }
       }
   ]
