@@ -1,7 +1,7 @@
 <template>
     <div class="swiper-container">
         <div class="swiper-wrapper">
-            <div class="swiper-slide" v-for="item in bannerList">
+            <div class="swiper-slide" v-for="item in bannerList" :key="item.id">
                 <router-link :to="'/projectDetail/'+item.id">
                     <img :src="item.cover" alt="">
                     <p class="item-name">{{item.name}}</p>
@@ -17,27 +17,45 @@
     import Swiper from 'swiper'
     import 'swiper/dist/css/swiper.min.css';
     export default {
-        props:['bannerList'],
+        props:{
+            bannerList:{
+                type:Array
+            }
+        },
         data(){
             return{
 
             }
         },
         methods:{
+            init(){
 
+//                this.$nextTick(function () {
+                    var swiper = new Swiper('.swiper-container', {
+                        autoplay: false,
+                        slidesPerView :2,
+                        navigation: {
+                            nextEl: '.swiper-button-next',
+                            prevEl: '.swiper-button-prev',
+                        },
+                        spaceBetween : '5%'
+                    });
+//                })
+            }
         },
         mounted(){
-            setTimeout(()=>{
-                var swiper = new Swiper('.swiper-container', {
-                    autoplay: false,
-                    slidesPerView :2,
-                    navigation: {
-                        nextEl: '.swiper-button-next',
-                        prevEl: '.swiper-button-prev',
-                    },
-                    spaceBetween : '5%'
-                });
-            },300)
+          setTimeout(()=>{
+            var swiper = new Swiper('.swiper-container', {
+                autoplay: false,
+                slidesPerView :2,
+                navigation: {
+                    nextEl: '.swiper-button-next',
+                    prevEl: '.swiper-button-prev',
+                },
+                spaceBetween : '5%'
+
+             },300);
+        })
         }
     }
 </script>

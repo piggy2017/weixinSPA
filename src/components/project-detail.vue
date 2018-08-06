@@ -48,7 +48,7 @@
 <script>
     import axios from 'axios'
     import data from '@/assets/js/util.js'
-    import banner from '@/components/swiper/banner'
+    import banner from '@/components/swipe/banner'
     import hotelList from '@/components/hotelList/hotel-list'
     export default {
         name:'project-detail',
@@ -74,6 +74,7 @@
                 axios.get(data.baseUrl+'project/detail?projectId='+this.id).then(res=>{
                     console.log(res)
                     this.proInfo=res.data.api_data
+                    console.log(this.proInfo.img);
                     for(let i in res.data.api_data.businessHResources){
                         if(res.data.api_data.businessHResources[i].type===0){
                             this.taoList.push(res.data.api_data.businessHResources[i])

@@ -53,9 +53,6 @@
         },
         watch:{
             itemId(oldValue,newValue){
-                console.log(oldValue);
-                console.log(newValue);
-                console.log(this.max);
                 if(oldValue===1){
                     console.log(123);
                     this.reduceDisabled=true

@@ -5,6 +5,7 @@ import home from '@/components/pages/home'
 import firstPage from '@/components/firstPage'
 import dongTai from '@/components/dongtai'
 import center from '@/components/center'
+import vuexpage from '@/components/vuexpage'
 import earn from '@/components/earn/earn'
 import travel from '@/components/travel'
 import house from '@/components/viewHouse'
@@ -57,7 +58,9 @@ export default new Router({
       },
       {path:'/house', name:'house', component:house},
       {path:'/upload', name:'upload', component:upload},
-      {path:'/projectDetail/:id', name:'projectDetail', component:projectDetail,
+      {path:'/projectDetail/:id',
+          name:'projectDetail',
+          component:projectDetail,
           meta:{
               title: '项目详情'
           }
@@ -70,6 +73,11 @@ export default new Router({
       {path:'/pdf', name:'pdf', component:pdf,
           meta:{
               title: 'pdf'
+          }
+      },
+      {path:'/vuexpage', name:'vuexpage', component:vuexpage,
+          meta:{
+              title: 'vuexpage'
           }
       },
       {path:'/cropper', name:'cropper', component:cropper,

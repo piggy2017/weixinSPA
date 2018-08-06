@@ -2,9 +2,17 @@
     <div class="author">
         authorauthorauthorauthor
         <p>获取到的cookie是:{{msg}}</p>
+        <h3>hasCode:{{$store.state.hasCode}}</h3>
+        <h3>hasLogin:{{hasLogin}}</h3>
+        <div>
+            <button @click="setLogin()">click me </button>
+        </div>
     </div>
 </template>
 <script>
+    import store from  '@/vuex/store'
+    import {mapState} from 'vuex'; //通过mapState的对象来赋值
+
     import VueCookies from 'Vue-cookies'
     export default {
         data(){
@@ -25,7 +33,14 @@
             }
             this.init();
         },
+        computed:{
+            ...mapState(["hasLogin"])
+        },
+        store,
         methods:{
+            setLogin(){
+                VueCookies.set("userName","sunlin");
+            },
             login(){
 
             },

@@ -47,7 +47,7 @@
 <script>
     import axios from 'axios'
     import data from '@/assets/js/util.js'
-    import slider from '@/components/swiper/swiper'
+    import slider from '@/components/swipe/swiper'
     import hotelList from '@/components/hotelList/hotel-list'
     export default {
         components:{

@@ -9,6 +9,10 @@
             <span>{{getData().a}}</span>
             <span>{{getData().b}}</span>
         </h3>
+        <h3 style="color: orange;">
+            <span>{{data1}}</span>
+            <span>{{data2}}</span>
+        </h3>
     </div>
 </template>
 <script>
@@ -18,7 +22,9 @@
             return{
                 msg:"Hello World !",
                 id:this.params,
-                nowCount:''
+                nowCount:'',
+                data1:"",
+                data2:""
             }
         },
         computed:{
@@ -42,8 +48,10 @@
         },
         watch:{
             params(oldValue,newValue){
-                //console.log(oldValue);
-                //console.log(newValue)
+                console.log(oldValue);
+                console.log(newValue)
+                this.data1=newValue*10;
+                this.data2=newValue*20;
             }
         },
         mounted(){

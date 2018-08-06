@@ -16,7 +16,7 @@
             <div class="center-tab-item" :class="{itemActive:isActive2}" @click="chooseActivity">我的活动</div>
         </div>
         <div class="swt-box">
-            <button class="my-btn" @click="alt">弹框</button>11
+            <button class="my-btn" @click="alt">弹框</button>
         </div>
         <div>
             <router-link to="/upload">
@@ -43,7 +43,7 @@
             </video-player>
         </div>
         <div class="my-vi" style="margin-top: 20px;margin-bottom: 60px;">
-            <video width="100%"  controls="controls">
+            <video id="my-video" width="100%" @click="stopPlay()"  controls="controls" x-webkit-airplay="true" webkit-playsinline="true">
                 <source src="http://7xkwa7.media1.z0.glb.clouddn.com/sample_video_L" type="video/ogg">
                 <source src="http://7xkwa7.media1.z0.glb.clouddn.com/sample_video_L" type="video/mp4">
                 Your browser does not support the video tag.
@@ -54,6 +54,9 @@
         </div>
         <div>
             <router-link to="/cropper">cropper剪裁图片</router-link>
+        </div>
+        <div>
+            <router-link to="/vuexpage">vuex读取数据，改变数据</router-link>
         </div>
         <div>
             <a href="https://www.baidu.com/">to demo page</a>
@@ -77,6 +80,8 @@
                 myMoney:888888,
                 isActive:true,
                 isActive2:false,
+                i:0,
+                start:0,
                 msg: 'Hello Vue.',
                 msg1: '',
                 msg2: '',
@@ -115,9 +120,36 @@
                 return this.$refs.videoPlayer.player
             }
         },
-
+        created(){
+            //this.test();
+        },
 
         methods:{
+            stopPlay(){
+                console.log(123123123);
+                if(this.i == 0) {
+                    document.getElementById("my-video").pause();
+                    this.i = 1;
+                    console.log(this.i);
+                } else {
+                    document.getElementById('my-video').play();
+                    this.i = 0;
+                    console.log(this.i);
+                }
+            },
+            test(){
+                let that=this;
+                setInterval(function(){
+                    var video = document.getElementById("my-video"); //获取video对象
+                    console.log(video)
+                    var time1 = video.currentTime;
+                    console.log(time1);
+                    if(time1-that.start>2){
+                        video.currentTime = 0;
+                    }
+                    that.start = time1;
+                },1000)
+            },
             chooseTab(){
                 this.isActive=true;
                 this.isActive2=false;
@@ -253,6 +285,10 @@
         border 1px solid #eee
     .player .vjs-custom-skin > .video-js .vjs-control-bar .vjs-fullscreen-control{
         /*margin-left: 0.6rem;*/
+    }
+    .player{
+        margin-top 1rem
+        margin-bottom 3rem
     }
     .video-js .vjs-progress-control{
         display none

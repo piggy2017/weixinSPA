@@ -37,6 +37,7 @@
         },
         methods:{
             rating: function(index) {
+                console.log(index);
                 var total = this.stars.length; //星星总数
                 var idx = index + 1; //这代表选的第idx颗星-也代表应该显示的星星数量
                 if(this.starNum == 0) {
