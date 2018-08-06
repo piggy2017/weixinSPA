@@ -15,6 +15,7 @@ import parent from '@/components/params/parent'
 import pdf from '@/components/pdf/pdf'
 import cropper from '@/components/cropper/cropper'
 import author from '@/components/author/author'
+import getmethods from '@/components/getmethods/getmethods'
 Vue.use(Router)
 export default new Router({
   //mode: 'history',
@@ -83,6 +84,11 @@ export default new Router({
       {path:'/cropper', name:'cropper', component:cropper,
           meta:{
               title: 'cropper'
+          }
+      },
+      {path:'/getmethods', name:'getmethods', component:getmethods,
+          meta:{
+              title: '函数调用'
           }
       },
       {path:'/author', name:'author', component:author,

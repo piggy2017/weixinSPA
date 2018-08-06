@@ -59,8 +59,12 @@
             <router-link to="/vuexpage">vuex读取数据，改变数据</router-link>
         </div>
         <div>
+            <router-link to="/getmethods">methods函数调用</router-link>
+        </div>
+        <div>
             <a href="https://www.baidu.com/">to demo page</a>
         </div>
+
         <div style="margin-top: 1rem;margin-bottom: 3rem;">
             <router-link to="/parent">to params test</router-link>
         </div>
