@@ -3,7 +3,7 @@
         <p>在methods里面调用函数</p>
         <p>{{count}}</p>
         <div>
-            <button @click="add()">+add</button>
+            <button @click="add(20)">+add</button>
             <button @click="getAdd(50)">methods 调用</button>
         </div>
     </div>
@@ -20,7 +20,9 @@
                 this.count+=num;
             },
             getAdd(myNum){
-                this.$options.methods.add.bind(this)(myNum);
+                console.log(this.$options.methods);
+                this.$options.methods.add.call(this,myNum);
+                //this.$options.methods.add.bind(this)(myNum);  都可以实现函数的调用
             }
         }
     }

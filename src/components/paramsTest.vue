@@ -49,7 +49,7 @@
         watch:{
             params(oldValue,newValue){
                 console.log(oldValue);
-                console.log(newValue)
+                console.log(newValue);
                 this.data1=newValue*10;
                 this.data2=newValue*20;
             }
