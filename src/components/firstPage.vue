@@ -47,6 +47,7 @@
 <script>
     import axios from 'axios'
     import data from '@/assets/js/util.js'
+    import {getPromise} from '@/assets/js/promise.js'
     import slider from '@/components/swipe/swiper'
     import hotelList from '@/components/hotelList/hotel-list'
     export default {
@@ -60,23 +61,20 @@
                 hotelList:[]
             }
         },
-        methods:{
-            init(){
-                axios.get(data.baseUrl+'projects').then(res=>{
-                    console.log(res)
-                    this.swiperList=res.data.api_data
-                })
-            },
-            getHotelList(){
-                axios.get(data.baseUrl+'hresources').then(res=>{
-                    console.log(res)
-                    this.hotelList=res.data.api_data
-                })
-            }
-        },
         created(){
-            this.init();
-            this.getHotelList();
+            let _self=this;
+            getPromise(data.baseUrl+'projects').then(res=>{
+                console.log(res);
+                _self.swiperList=res.data.api_data
+            },error=>{
+                console.log(error)
+            })
+            getPromise(data.baseUrl+'hresources').then(result=>{
+                console.log(result);
+                _self.hotelList=result.data.api_data
+            },error=>{
+                console.log(error)
+            })
         }
     }
 </script>

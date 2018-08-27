@@ -6,6 +6,7 @@ import router from './router'
 import fastclick from 'fastclick'
 import VueCookies from 'vue-cookies'
 import VideoPlayer from 'vue-video-player'
+//import axios from 'axios'
 import store from  './vuex/store'
 //import {mapState} from 'Vuex'
 require('video.js/dist/video-js.css')
@@ -21,11 +22,11 @@ Vue.use(VideoPlayer)
 Vue.use(VueCookies)
 
 router.beforeEach((to,from,next)=>{
-    console.log(to);
-    console.log(from);
-    console.log(store);
-    console.log(store.state.hasLogin)
-    console.log(123123)
+    // console.log(to);
+    // console.log(from);
+    // console.log(store);
+    // console.log(store.state.hasLogin)
+    // console.log(123123)
 
     // let token = window.localStorage.getItem("phone_token");
     // if(to.path == '/author'){ // && store.state.user.id

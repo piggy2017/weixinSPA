@@ -21,22 +21,21 @@
 <script>
     import axios from 'axios'
     import data from '@/assets/js/util.js'
+    import {getPromise} from '@/assets/js/promise.js'
     export default {
         data(){
             return{
                 earnList:[]
             }
         },
-        methods:{
-            init(){
-                axios.get(data.baseUrl+'projects').then(res=>{
-                    this.earnList=res.data.api_data;
-                    console.log(this.earnList)
-                })
-            }
-        },
         created(){
-            this.init();
+            let _self=this;
+            getPromise(data.baseUrl+'projects').then(res=>{
+                console.log(res);
+                _self.earnList=res.data.api_data
+            },error=>{
+                console.log(error)
+            })
         }
     }
 </script>

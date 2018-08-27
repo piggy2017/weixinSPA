@@ -6,6 +6,7 @@
 <script>
     import axios from 'axios'
     import data from '@/assets/js/util.js'
+    import {getPromise} from '@/assets/js/promise.js'
     import proList from '@/components/proList/proList'
     export default {
         components:{
@@ -16,16 +17,14 @@
                 houseList:[]
             }
         },
-        methods:{
-            init(){
-                axios.get(data.baseUrl+"get_coin").then(res=>{
-                    console.log(res);
-                    this.houseList=res.data.api_data;
-                })
-            }
-        },
         created(){
-            this.init()
+            let _self=this;
+            getPromise(data.baseUrl+'projects').then(res=>{
+                console.log(res);
+                _self.houseList=res.data.api_data
+            },error=>{
+                console.log(error)
+            })
         }
     }
 </script>
